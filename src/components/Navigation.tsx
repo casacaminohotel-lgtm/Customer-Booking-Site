@@ -17,7 +17,7 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <a href="/" className="flex items-center space-x-3 group">
             <div className="relative p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg group-hover:shadow-xl group-hover:from-blue-600 group-hover:to-purple-700 transition-all duration-300 w-12 h-12 flex items-center justify-center">
               <span className="relative text-white font-bold text-2xl font-dancing-script z-10">C</span>
             </div>
@@ -29,17 +29,17 @@ export default function Navigation() {
                 HOTELS
               </span>
             </div>
-          </Link>
+          </a>
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center space-x-8">
-            <Link 
+            <a 
               href="/" 
               className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-50"
             >
               <Home className="h-4 w-4" />
               <span>Home</span>
-            </Link>
+            </a>
             <Link 
               href="/properties" 
               className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-50"
@@ -89,13 +89,13 @@ export default function Navigation() {
         {isMobileMenuOpen && (
           <div className="lg:hidden pb-4 border-t border-gray-100">
             <div className="flex flex-col space-y-2 pt-4">
-              <Link 
+              <a 
                 href="/" 
                 className="text-gray-700 hover:text-gray-900 font-medium px-4 py-2 rounded-lg hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
-              </Link>
+              </a>
               <Link 
                 href="/properties" 
                 className="text-gray-700 hover:text-gray-900 font-medium px-4 py-2 rounded-lg hover:bg-gray-50"

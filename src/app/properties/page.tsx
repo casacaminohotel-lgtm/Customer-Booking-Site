@@ -9,6 +9,7 @@ import { properties } from '@/lib/properties-data';
 import { generateBookingUrl } from '@/lib/booking-redirect';
 import { Calendar, Users, MapPin, ChevronRight } from 'lucide-react';
 import React from 'react';
+import { ImageCarousel } from '@/components/ImageCarousel';
 
 export default function PropertiesPage() {
   return (
@@ -21,9 +22,15 @@ export default function PropertiesPage() {
 function PropertiesPageContent() {
   const searchParams = useSearchParams();
   
-  // Initialize state from URL parameters
-  const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
+  // Initialize state from URL parameters or defaults
+  const [checkIn, setCheckIn] = useState(() => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  });
+  const [checkOut, setCheckOut] = useState(() => {
+    const tomorrow = new Date(Date.now() + 86400000);
+    return tomorrow.toISOString().split('T')[0];
+  });
   const [guests, setGuests] = useState('1');
   
   // Read URL parameters on mount and when they change
@@ -131,23 +138,16 @@ function PropertiesPageContent() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {properties.map((property) => (
               <Card key={property.id} className="overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
-                {/* Image */}
+                {/* Image Carousel */}
                 <div className="relative h-48 bg-gradient-to-br from-blue-400 to-purple-500 overflow-hidden">
-                  {property.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={property.image}
-                      alt={property.name}
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-white">
-                      <span className="text-4xl">🏨</span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Content */}
+                  <ImageCarousel 
+                    photos={property.photos || []} 
+                    alt={property.name}
+                    height="h-48"
+                    autoPlay={true}
+                    autoPlayInterval={5000}
+                  />
+                </div>                {/* Content */}
                 <CardHeader className="pb-3">
                   <h3 className="text-xl font-bold text-gray-900">{property.name}</h3>
                   <div className="flex items-center text-gray-600 mt-2">

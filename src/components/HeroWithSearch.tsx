@@ -11,6 +11,7 @@ import { properties } from '@/lib/properties-data';
 import { generateBookingUrl } from '@/lib/booking-redirect';
 import { normalizeDate } from '@/lib/date-utils';
 import gsap from 'gsap';
+import { ImageCarousel } from '@/components/ImageCarousel';
 
 export function HeroWithSearch() {
   const bgRef = useRef<HTMLDivElement>(null);
@@ -337,18 +338,13 @@ export function HeroWithSearch() {
                     >
                       <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col group bg-white">
                         <div className="relative h-48 bg-gradient-to-br from-blue-400 to-purple-500 overflow-hidden">
-                          {property.image ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              src={property.image}
-                              alt={property.name}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center text-white">
-                              <span className="text-4xl">🏨</span>
-                            </div>
-                          )}
+                          <ImageCarousel 
+                            photos={property.photos || []} 
+                            alt={property.name}
+                            height="h-48"
+                            autoPlay={true}
+                            autoPlayInterval={5000}
+                          />
                         </div>
 
                         <CardHeader className="pb-3">

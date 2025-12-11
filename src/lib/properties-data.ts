@@ -5,6 +5,14 @@ export interface Property {
   description: string;
   location: string;
   image: string;
+  // Optional Cloudinary collection or gallery link for property images
+  galleryCollection?: string;
+  // Optional array of photos for carousels / galleries
+  photos?: {
+    id: string;
+    url: string;
+    isMain?: boolean;
+  }[];
   bookingEngineUrl: string;
   amenities: string[];
 }
@@ -15,7 +23,22 @@ export const properties: Property[] = [
     name: "Casa Camino Hotel",
     description: "A charming and comfortable hotel with excellent amenities and warm hospitality",
     location: "Los Angeles, CA",
-    image: "/properties/casa-camino.jpg",
+    image: "https://res.cloudinary.com/dyskxbejq/image/upload/v1765485235/1_sbuakk.jpg",
+    galleryCollection: "https://collection.cloudinary.com/dyskxbejq/71046c512c2ca17979f217c6356e1664",
+    photos: [
+      {
+        id: "1",
+        url: "https://res.cloudinary.com/dyskxbejq/image/upload/v1765485235/1_sbuakk.jpg",
+        isMain: true
+      }
+      ,
+      {
+        id: "2",
+        url: "https://res.cloudinary.com/dyskxbejq/image/upload/v1765485236/2_o8vbns.jpg",
+        isMain: false
+      }
+    ],
+    // Additional photos will be appended here
     bookingEngineUrl: "https://booking.hotelkeyapp.com/#/booking/select-rooms?pc=0717&from={checkIn}&to={checkOut}&guests={guests}&skip_search=true&property_id=05ffa925-1976-43ba-b56b-148937916180&url=http%3A%2F%2Fwww.casacaminohotel.com%2F",
     amenities: ["WiFi", "Parking", "Room Service", "Pool", "Restaurant"]
   },
